@@ -13,14 +13,10 @@ const runJob = async () => {
 
     for (const currency of Object.keys(currencies)) {
         try {
-            if (currency === 'EUR') {
-                const ratesResponse = await fixerRatesService.getExchangeRates(currency);
-                const rates = ratesResponse.rates;
+            const ratesResponse = await fixerRatesService.getExchangeRates(currency);
+            const rates = ratesResponse.rates;
 
-                await exchangeRateRepository.saveExchangeRate(currency,  currencies[currency], rates);
-            }
-
-            await exchangeRateRepository.saveExchangeRate(currency, currencies[currency]);
+            await exchangeRateRepository.saveExchangeRate(currency,  currencies[currency], rates);
         } catch (error) {
             console.error(`Failed to fetch or save exchange rates for ${currency}:`, error);
         }

@@ -2,7 +2,6 @@ import axios from "axios";
 import { config } from "../config";
 
 export const getRequest = async <T>(endpoint: string, params?: Record<string, string | number>): Promise<T> => {
-    console.log(import.meta.env)
     try {
         const response = await axios.get<T>(`${config.API_URL}/${endpoint}`, {
             params

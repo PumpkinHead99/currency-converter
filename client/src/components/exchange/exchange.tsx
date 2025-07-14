@@ -6,7 +6,6 @@ function Exchange() {
     useEffect(() => { 
         getRequest<{ currencies: string[] }>('currency')
             .then(data => {
-                console.log("Fetched currencies:", data);
                 setCurrencies(data.currencies || []);
             })
             .catch(error => {
@@ -29,8 +28,6 @@ function Exchange() {
             });
 
             const statisticsResponse = await getRequest<{ paging: { total: number } }>('statistics/');
-
-            console.log(statisticsResponse);
 
             setResult(response.result);
             setConversionsCount(statisticsResponse?.paging?.total || 0);

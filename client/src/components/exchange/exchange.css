@@ -1,0 +1,126 @@
+#exchange {
+    margin-top: 10%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .title-main {
+        font-size: 2.5em;
+    }
+
+    .converter {
+        display: flex;
+        align-items: center;
+        background-color: #522471;
+        border-radius: 10px;
+        padding: 3rem 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .field-container {
+        margin: 0 1rem;
+        width: 18rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .label-container {
+        font-size: 1.1em;
+        margin-bottom: 0.5rem;
+        align-self: flex-start;
+        color: white;
+    }
+
+    .input-amount,
+    .select-currency {
+        width: 100%;
+        height: 2.5rem;
+        border-radius: 4px;
+        border: none;
+        font-size: 1.2em;
+        color: black;
+        box-sizing: border-box;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+    }
+
+    .input-amount:focus,
+    .select-currency:focus {
+        outline: none;
+        box-shadow: none;
+        border: none;
+    }
+
+    .btn-convert {
+        background-color: #522471;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1.2em;
+        cursor: pointer;
+        margin-top: 2rem;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #5e2a81;
+        }
+    }
+
+    .result-container {
+        background-color: #eceef0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 1.5rem;
+        max-width: 300px;
+        margin: 2rem auto;
+        text-align: start;
+        font-family: Arial, sans-serif;
+    }
+
+    .result-container .label-container {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+    }
+
+    .result-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .result-divider {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 1rem 0;
+    }
+
+    .result-count {
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .result-count-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    @media screen and (max-width: 768px) {
+        .converter {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .field-container {
+            width: 100%;
+            max-width: 18rem;
+            margin: 0 auto;
+        }
+    }
+}

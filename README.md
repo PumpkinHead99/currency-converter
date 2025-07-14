@@ -61,6 +61,10 @@ GET /api/currency
 POST /api/currency/convert
 ```
 
+## APP info
+ - app is running by default on http://localhost:3600/
+ - api is running by default on http://localhost:3800/
+
 ## Additional info
 - Fixer api and others from list are limited to one base currency, subscription is needed for all currency rates
 - AI used mostly on picking react framework, styles and structure planning. Copilot suggestion in VSCode

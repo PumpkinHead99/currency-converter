@@ -1,3 +1,4 @@
+// Exchange domponent for currency conversion
 import { useState, useEffect } from 'react';
 import './exchange.css';
 import { getRequest, postRequest } from '../../utils/request';
@@ -14,6 +15,10 @@ function Exchange() {
         );
     }, []);
 
+    /**
+     * Converts the specified amount from one currency to another
+     * @returns Converts the specified amount from one currency to another
+     */
     const convertCurrency = async () => { 
         if ((!amount || isNaN(parseFloat(amount))) || !baseCurrency || !targetCurrency) {
             console.error("Please fill in all fields.");
@@ -36,6 +41,7 @@ function Exchange() {
         }
     }
 
+    // State variables
     const [amount, setAmount] = useState('');
     const [baseCurrency, setBaseCurrency] = useState('');
     const [targetCurrency, setTargetCurrency] = useState('');

@@ -70,4 +70,4 @@ POST /api/currency/convert
 - AI used mostly on picking react framework, styles and structure planning. Copilot suggestion in VSCode
 - Authentication not needed for small scope project with public endoints
 
-### Time elapsed 7H - 8H
+### Time elapsed 8H - 9H

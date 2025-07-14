@@ -1,6 +1,7 @@
 /**
  * ExchangeRateRepository class for managing exchange rates in the database.
  */
+import { UpdateExchangeRate } from "../../../models/exchange-rates.model";
 import { getDb } from "../../client";
 import { ExchangeRate } from "./exchange-rate.entity";
 import { v4 as uuidv4 } from 'uuid';
@@ -33,7 +34,8 @@ export class ExchangeRateRepository {
         const existingRate = await db.collection<ExchangeRate>(COLLECTION_NAME).findOne({ currency, deletedAt: null });
 
         if (existingRate) {
-            await this.updateExchangeRate(currency, rates || existingRate.rates);
+            await this.updateExchangeRate(existingRate._id, { rates: rates || existingRate.rates });
+            return existingRate._id;
         }
 
         const rateData: ExchangeRate = {
@@ -57,12 +59,12 @@ export class ExchangeRateRepository {
      * @param rates Exchange rates to update
      * @returns {Promise<void>}
      */
-    public async updateExchangeRate(baseCurrency: string, rates: Record<string, number>): Promise<void> {
+    public async updateExchangeRate(id: string, data: UpdateExchangeRate): Promise<void> {
         const db = getDb();
 
         await db.collection<ExchangeRate>(COLLECTION_NAME).updateOne(
-            { currency: baseCurrency, deletedAt: null },
-            { $set: { rates, updatedAt: new Date() } }
+            { _id: id, deletedAt: null },
+            { $set: { ...data, updatedAt: new Date() } }
         );
     }
 

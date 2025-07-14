@@ -2,6 +2,7 @@ import express from 'express'
 import { MongoClient } from 'mongodb'
 import cors from 'cors';
 import conversionRoutes from './routes/currency';
+import statisticsRoutes from './routes/statistics';
 import { config } from './config';
 import { connectToDatabase } from './database/client';
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/currency', conversionRoutes);
+app.use('/api/statistics', statisticsRoutes);
 
 // Connect to DB and start the server
 connectToDatabase().then(() => {

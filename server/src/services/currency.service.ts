@@ -1,12 +1,15 @@
 // CurrencyService class for managing currency-related operations
 import { ExchangeRateRepository } from "../database/entities/exchange-rate/exchange-rate.repository";
 import { CurrenciesResponse, CurrencyConversionBody } from "../models/currency.models";
+import { StatisticsService } from "./statistics.service";
 
 export class CurrencyService {
     private exchangeRateRepository: ExchangeRateRepository;
+    private statisticsService: StatisticsService;
 
-    constructor(exchangeRateRepository: ExchangeRateRepository) {
+    constructor(exchangeRateRepository: ExchangeRateRepository, statisticsService: StatisticsService) {
         this.exchangeRateRepository = exchangeRateRepository;
+        this.statisticsService = statisticsService;
     }
 
     /**
@@ -46,8 +49,16 @@ export class CurrencyService {
 
         const conversion = data.amount * rate;
 
+        // Save statistics for conversion
+        await this.statisticsService.save({
+            baseCurrency: data.baseCurrency,
+            targetCurrency: data.targetCurrency,
+            exchangeRate: rate,
+            amount: data.amount,
+            convertedAmount: conversion,
+        });
+
         // Round to two decimal places
         return Math.round(conversion * 100) / 100;
     }
 }
-

@@ -3,10 +3,13 @@ import { ExchangeRateRepository } from '../database/entities/exchange-rate/excha
 import { CurrencyService } from '../services/currency.service';
 import { BodyMiddleware } from '../utils/body-middleware';
 import { CurrencyConversionValidator } from '../utils/validators/currency.validator';
+import { StatisticsRepository } from '../database/entities/statistics/statistics.repository';
+import { StatisticsService } from '../services/statistics.service';
 const router = express.Router();
 
 const exchangeRateRepository = new ExchangeRateRepository();
-const currencyService = new CurrencyService(exchangeRateRepository);
+const statisticsService = new StatisticsService(new StatisticsRepository());
+const currencyService = new CurrencyService(exchangeRateRepository, statisticsService);
 
 router.get('/', async (req, res, next) => {
     try {
